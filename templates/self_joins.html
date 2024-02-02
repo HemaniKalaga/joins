@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>self joins</title>
+</head>
+<body>
+    <center>
+        <h1>Managers Details</h1>
+        <table border="2px">
+            <tr>
+                <th>Ename</th>
+                <th>ManagerName</th>
+                <th>Sal</th>
+            </tr>
+            {% for eo in empmgrobjects %}
+            <tr>
+                <td>{{eo.ename}}</td>
+                <td>{{eo.mgr.ename}}</td>
+                <td>{{eo.sal}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>
