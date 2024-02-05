@@ -40,3 +40,21 @@ def emp_mgr_dept(request):
     d={'emdo':emdo}
     return render(request,'emp_mgr_dept.html',d)
 
+
+def emp_salgrade(request):
+    EO=Emp.objects.all()
+    SO=Salgrade.objects.all()
+
+    SO=Salgrade.objects.filter(grade=3)
+    EO=Emp.objects.filter(sal__range=(SO[0].lowsal,SO[0].highsal))
+
+    SO=Salgrade.objects.filter(grade__in=(3,4))
+    EO=Emp.objects.none()
+    for sgo in SO:
+        EO=EO|Emp.objects.filter(sal__range=(sgo.lowsal,sgo.highsal),ename="Blake")
+
+    
+
+    d={'EO':EO,'SO':SO}
+    return render(request,'emp_salgrade.html',d)
+
